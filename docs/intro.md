@@ -1,6 +1,5 @@
 ---
 title: Introduction
-pagination_next: installation-and-setup
 ---
 
 # Introduction
