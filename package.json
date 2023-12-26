@@ -1,0 +1,30 @@
+{
+  "name": "javaabu-js-utilities",
+  "version": "1.0.0",
+  "description": "JavaScript utilities used for Javaabu Laravel projects",
+  "main": "dist/js/utilities.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Javaabu/js-utilities.git"
+  },
+  "keywords": [
+    "js",
+    "utilities",
+    "laravel"
+  ],
+  "author": {
+    "name": "Arushad Ahmed",
+    "url": "https://github.com/dash8x"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Javaabu/js-utilities/issues"
+  },
+  "homepage": "https://github.com/Javaabu/js-utilities#readme"
+}
