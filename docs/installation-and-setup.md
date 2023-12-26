@@ -1,6 +1,5 @@
 ---
 title: Installation & Setup
-pagination_next: basic-usage/getting-started
 ---
 
 # Installation
