@@ -1,10 +1,11 @@
 ---
 title: Installation & Setup
+sidebar_position: 1.2
 ---
 
 # Installation
-You can install the package via composer:
+You can install the package via npm:
 
 ```bash
-composer require javaabu/js-utilities
+npm install javaabu-js-utilities
 ```
