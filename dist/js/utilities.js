@@ -24,20 +24,6 @@ window.restrictCharacters = function (myfield, e, restrictionType) {
     }
 };
 
-/**
- * checks if a given coordinate is in the correct format
- */
-window.check_lat_lng = function (lat, lon) {
-    ck_lat = /^(-?[1-8]?\d(?:\.\d{1,18})?|90(?:\.0{1,18})?)$/;
-    ck_lon = /^(-?(?:1[0-7]|[1-9])?\d(?:\.\d{1,18})?|180(?:\.0{1,18})?)$/;
-    var validLat = ck_lat.test(lat);
-    var validLon = ck_lon.test(lon);
-    if (validLat && validLon) {
-        return true;
-    } else {
-        return false;
-    }
-};
 
 /**
  * Convert url to slug
