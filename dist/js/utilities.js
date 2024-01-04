@@ -1,24 +1,4 @@
 /**
- * We'll register a HTTP interceptor to attach the "CSRF" header to each of
- * the outgoing requests issued by this application. The CSRF middleware
- * included with Laravel will automatically verify the header's value.
- */
-(function () {
-    var token = document.head.querySelector('meta[name="csrf-token"]');
-
-    if (token) {
-        var op = XMLHttpRequest.prototype.open;
-        XMLHttpRequest.prototype.open = function () {
-            var resp = op.apply(this, arguments);
-            this.setRequestHeader('X-CSRF-Token', token.content);
-            return resp;
-        };
-    } else {
-        console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
-    }
-}());
-
-/**
  * Restrict input characters
  * http://www.qodo.co.uk/blog/javascript-restrict-keyboard-character-input/
  */

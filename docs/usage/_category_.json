@@ -1,0 +1,11 @@
+{
+    "position": 2,
+    "label": "Usage",
+    "collapsible": true,
+    "collapsed": false,
+    "link": {
+        "type": "generated-index",
+        "slug": "/js-utilities/_categories/usage",
+        "description": "Details of all the functionalities offered by JS Utilities"
+    }
+}

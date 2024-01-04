@@ -11,7 +11,7 @@ This package is currently under development. If anything works, that's a surpris
 
 :::
 
-JS Utilities provides helpful JavaScript functionalities that you can use in your Laravel app.
+[JS Utilities](https://github.com/Javaabu/js-utilities) provides helpful JavaScript functionalities that you can use in your Laravel app.
 
 For example, here's how you can show a confirmation message before a form is submitted on a button press.
 
