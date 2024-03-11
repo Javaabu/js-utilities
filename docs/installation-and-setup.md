@@ -12,7 +12,7 @@ In order to use JS Utilities, you must include the compiled JavaScript files on 
 First install the NPM package 
 
 ```bash
-npm install javaabu-js-utilities --save
+npm install @javaabu/js-utilities --save
 ```
 
 Then copy the compiled JS files to your public directory using Laravel Mix by adding the following line to your `webpack.mix.js` file and running `npm run prod`

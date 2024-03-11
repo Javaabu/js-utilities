@@ -71,6 +71,31 @@ window.randString = function (len) {
 };
 
 /**
+ * Convert to title case
+ */
+window.titleCase = function (str, delimiter) {
+    return str.split(delimiter).map(function (val) {
+        return val.charAt(0).toUpperCase() + val.substr(1).toLowerCase();
+    }).join(' ');
+};
+
+/**
+ * Redirects the page
+ */
+window.redirectPage = function (redirect_url) {
+    if (redirect_url) {
+        if (redirect_url.indexOf('#') == 0) {
+            window.location.hash = redirect_url;
+            window.location.reload();
+        } else {
+            window.location.replace(redirect_url);
+        }
+    } else {
+        window.location.reload();
+    }
+};
+
+/**
  * Show loading
  */
 window.toggleLoading = function (elem, show) {
@@ -103,15 +128,6 @@ window.togglePreloader = function (show) {
     } else {
         $('.page-loader').hide();
     }
-};
-
-/**
- * Convert to title case
- */
-window.titleCase = function (str, delimiter) {
-    return str.split(delimiter).map(function (val) {
-        return val.charAt(0).toUpperCase() + val.substr(1).toLowerCase();
-    }).join(' ');
 };
 
 /**
@@ -186,21 +202,7 @@ window.showValidationErrorMsg = function (xhr, form) {
     });
 };
 
-/**
- * Redirects the page
- */
-window.redirectPage = function (redirect_url) {
-    if (redirect_url) {
-        if (redirect_url.indexOf('#') == 0) {
-            window.location.hash = redirect_url;
-            window.location.reload();
-        } else {
-            window.location.replace(redirect_url);
-        }
-    } else {
-        window.location.reload();
-    }
-};
+
 
 /**
  * Serialize to json form data
