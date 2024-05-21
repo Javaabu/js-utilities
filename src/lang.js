@@ -3,7 +3,7 @@
  */
 
 function init() {
-    if (Lang === undefined) {
+    if (typeof Lang === 'undefined') {
         return;
     }
 
@@ -17,7 +17,7 @@ function init() {
 }
 
 function __(key, params, locale) {
-    if (Lang === undefined) {
+    if (typeof Lang === 'undefined') {
         return key;
     }
 
