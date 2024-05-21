@@ -17,7 +17,7 @@ loaders.toggleLoading($('#some-button'), true);
 loaders.toggleLoading($('#some-button'), false);
 ```
 
-You can customise the classes and elements used by the module like so:
+By default, loaders are designed to use [FontAwesome](https://fontawesome.com). To use a different icon library or a custom animation, you can customise the classes and elements used by the module like so:
 
 ```javascript
 import { loaders } from '@javaabu/js-utilities';
@@ -25,7 +25,7 @@ import { loaders } from '@javaabu/js-utilities';
 loaders.config.iconPrefix = 'fa';
 loaders.config.loadingClass = 'loading';
 loaders.config.loadingTag = 'i';
-loaders.config.loaderIcon = loaders.config.iconPrefix + '-loader';
+loaders.config.loaderIcon = loaders.config.iconPrefix + '-circle-notch';
 loaders.config.loaderAnimation = loaders.config.iconPrefix + '-spin';
 loaders.config.loadingElem = `<i class="${loaders.config.iconPrefix} ${loaders.config.loaderIcon} ${loaders.config.loaderAnimation} added-loader ${loaders.config.loadingClass} me-2"></i> `;
 ```
