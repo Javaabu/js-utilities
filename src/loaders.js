@@ -7,7 +7,7 @@ let loadingClass = 'loading';
 let loadingTag = 'i';
 let loaderIcon = iconPrefix + '-loader';
 let loaderAnimation = iconPrefix + '-spin';
-let loadingElem = `<i class="${iconPrefix} ${loaderIcon} ${loaderAnimation} added-loader ${loadingClass} me-2"> `;
+let loadingElem = `<${loadingTag} class="${iconPrefix} ${loaderIcon} ${loaderAnimation} added-loader ${loadingClass} me-2"></${loadingTag}> `;
 let preloaderClass = 'page-loading';
 
 /**
