@@ -13,10 +13,11 @@ This package is currently under development. If anything works, that's a surpris
 
 [JS Utilities](https://github.com/Javaabu/js-utilities) provides helpful JavaScript functionalities that you can use in your Laravel app.
 
-For example, here's how you can show a confirmation message before a form is submitted on a button press.
+This package provides multiple features in the forms of separate ES6 modules which can be imported as needed.
+For example, to automatically add the `X-CSRF-Token` header to outgoing ajax requests, you can import the `csrfAdder` module and initialize it.
 
-```html
-<button class="btn btn-danger" type="submit" data-confirm="Are you sure you want to delete this?">
-    Delete
-</button>
+```javascript
+import { csrfAdder } from '@javaabu/js-utilities';
+
+csrfAdder.init();
 ```
