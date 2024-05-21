@@ -70,5 +70,6 @@ export {
     loadingElem,
     preloaderClass,
     toggleLoading,
+    togglePreloader,
     init
 };
