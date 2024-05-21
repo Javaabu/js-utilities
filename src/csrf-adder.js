@@ -3,7 +3,7 @@
  * the outgoing requests issued by this application. The CSRF middleware
  * included with Laravel will automatically verify the header's value.
  */
-(function () {
+function init() {
     var token = document.head.querySelector('meta[name="csrf-token"]');
     var site_domain = window.location.origin;
 
@@ -20,4 +20,6 @@
             return resp;
         };
     }
-}());
+}
+
+export { init };

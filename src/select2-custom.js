@@ -1,7 +1,11 @@
-$(document).ready(function () {
+/**
+ * Select2 custom
+ */
+
+function bind(root_elem) {
 
     // Iniate Select2 Plugin
-    $('.select2-basic').each(function () {
+    root_elem.find('.select2-basic').each(function () {
         var element = $(this);
         var dropdown_parent = element.data('dropdown-parent-elem') || null;
         var args = {};
@@ -14,7 +18,7 @@ $(document).ready(function () {
     });
 
     // select2 icon
-    $('.select2-b-icon').each(function () {
+    root_elem.find('.select2-b-icon').each(function () {
         var prefix = $(this).data('icon-prefix');
         var placeholder = $(this).data('placeholder');
 
@@ -52,7 +56,7 @@ $(document).ready(function () {
     });
 
     // select2 image
-    $('.select2-b-image').each(function () {
+    root_elem.find('.select2-b-image').each(function () {
         $(this).select2({
             templateSelection: renderOption,
             templateResult: renderOption
@@ -74,7 +78,7 @@ $(document).ready(function () {
     });
 
     //ajax select2
-    $('.select2-ajax').each(function () {
+    root_elem.find('.select2-ajax').each(function () {
         var element = $(this);
         var name_field = element.data('name-field') || 'name';
         var id_field = element.data('id-field') || 'id';
@@ -149,7 +153,7 @@ $(document).ready(function () {
     /*
      * SELECT2 AJAX Cascading Select Box
      * */
-    $('[data-ajax-child]').on('change', function () {
+    root_elem.find('[data-ajax-child]').on('change', function () {
         var element = $(this);
         var value = element.val();
         var child = element.data('ajax-child');
@@ -176,7 +180,7 @@ $(document).ready(function () {
 
 
     //Select2 Cascade
-    $('[data-select-child]').on('change', function () {
+    root_elem.find('[data-select-child]').on('change', function () {
         var el = $(this);
         var selected_val = el.val();
         var child_select = $(el.data('select-child'));
@@ -271,10 +275,10 @@ $(document).ready(function () {
     });
 
     //Select2 Cascade trigger root select
-    $('[data-first][data-select-child]:not(.no-auto-trigger)').trigger('change');
+    root_elem.find('[data-first][data-select-child]:not(.no-auto-trigger)').trigger('change');
 
     //Select2 Cascade Multiple Children
-    $('[data-select-children]').on('change', function () {
+    root_elem.find('[data-select-children]').on('change', function () {
         var el = $(this);
         var selected_val = el.val();
         var children_select = $(el.data('select-children'));
@@ -352,7 +356,14 @@ $(document).ready(function () {
         }
     });
 
-    //Select2 Cascade Children trigger root select
-    $('[data-first][data-select-children]').trigger('change');
+    // Select2 Cascade Children trigger root select
+    root_elem.find('[data-first][data-select-children]').trigger('change');
+}
 
-});
+function init() {
+    $(document).ready(function () {
+        bind($(document));
+    });
+}
+
+export { bind, init };
