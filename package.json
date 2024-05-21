@@ -1,6 +1,6 @@
 {
   "name": "@javaabu/js-utilities",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "description": "JavaScript utilities used for Javaabu Laravel projects",
   "main": "src/index.js",
   "scripts": {
