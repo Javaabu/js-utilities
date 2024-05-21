@@ -30,11 +30,11 @@ function __(key, params, locale) {
     }
 
     // https://github.com/rmariuzzo/Laravel-JS-Localization/issues/105#issuecomment-723641837
-    if (Lang.has('strings.' + key)) {
-        return Lang.get('strings.' + key, params, locale);
-    } else {
-        return key;
+    if ((! Lang.has(key)) && Lang.has('strings.' + key)) {
+        key = 'strings.' + key;
     }
+
+    return Lang.get(key, params, locale);
 }
 
 export { __, init };
