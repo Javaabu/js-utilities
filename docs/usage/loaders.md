@@ -22,12 +22,12 @@ You can customise the classes and elements used by the module like so:
 ```javascript
 import { loaders } from '@javaabu/js-utilities';
 
-loaders.iconPrefix = 'fa';
-loaders.loadingClass = 'loading';
-loaders.loadingTag = 'i';
-loaders.loaderIcon = loaders.iconPrefix + '-loader';
-loaders.loaderAnimation = loaders.iconPrefix + '-spin';
-loaders.loadingElem = `<i class="${loaders.iconPrefix} ${loaders.loaderIcon} ${loaders.loaderAnimation} added-loader ${loaders.loadingClass} me-2"> `;
+loaders.config.iconPrefix = 'fa';
+loaders.config.loadingClass = 'loading';
+loaders.config.loadingTag = 'i';
+loaders.config.loaderIcon = loaders.config.iconPrefix + '-loader';
+loaders.config.loaderAnimation = loaders.config.iconPrefix + '-spin';
+loaders.config.loadingElem = `<i class="${loaders.config.iconPrefix} ${loaders.config.loaderIcon} ${loaders.config.loaderAnimation} added-loader ${loaders.config.loadingClass} me-2"></i> `;
 ```
 
 ## Trigerring a page preloader

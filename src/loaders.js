@@ -2,38 +2,42 @@
  * Loaders
  */
 
-let iconPrefix = 'fa';
-let loadingClass = 'loading';
-let loadingTag = 'i';
-let loaderIcon = iconPrefix + '-circle-notch';
-let loaderAnimation = iconPrefix + '-spin';
-let loadingElem = `<${loadingTag} class="${iconPrefix} ${loaderIcon} ${loaderAnimation} added-loader ${loadingClass} me-2"></${loadingTag}> `;
-let preloaderClass = 'page-loading';
+
+let config = {
+    iconPrefix: 'fa',
+    loadingClass: 'loading',
+    loadingTag: 'i',
+    preloaderClass: 'page-loading'
+}
+
+config.loaderIcon = config.iconPrefix + '-circle-notch';
+config.loaderAnimation = config.iconPrefix + '-spin';
+config.loadingElem = `<${config.loadingTag} class="${config.iconPrefix} ${config.loaderIcon} ${config.loaderAnimation} added-loader ${config.loadingClass} me-2"></${config.loadingTag}> `;
 
 /**
  * Show loading
  */
 function toggleLoading(elem, show) {
-    if (elem.hasClass(iconPrefix)) {
+    if (elem.hasClass(config.iconPrefix)) {
         if (show) {
-            elem.addClass(loadingClass);
+            elem.addClass(config.loadingClass);
         } else {
-            elem.removeClass(loadingClass);
+            elem.removeClass(config.loadingClass);
         }
-    } else if (elem.find('.' + iconPrefix + ':not(.added-loader)').length > 0) {
+    } else if (elem.find('.' + config.iconPrefix + ':not(.added-loader)').length > 0) {
         if (show) {
-            elem.children('.' + iconPrefix).addClass(loadingClass);
+            elem.children('.' + config.iconPrefix).addClass(config.loadingClass);
         } else {
-            elem.children('.' + iconPrefix).removeClass(loadingClass);
+            elem.children('.' + config.iconPrefix).removeClass(config.loadingClass);
         }
     } else {
         if (show) {
-            var loading = loadingElem;
-            elem.children(loadingTag).hide();
+            var loading = config.loadingElem;
+            elem.children(config.loadingTag).hide();
             elem.prepend(loading);
         } else {
-            elem.children('.' + loadingClass).remove();
-            elem.children(loadingTag).show();
+            elem.children('.' + config.loadingClass).remove();
+            elem.children(config.loadingTag).show();
         }
     }
 }
@@ -43,9 +47,9 @@ function toggleLoading(elem, show) {
  */
 function togglePreloader(show) {
     if (show) {
-        $('body').addClass(preloaderClass + ' ' + preloaderClass + '-fadein');
+        $('body').addClass(config.preloaderClass + ' ' + config.preloaderClass + '-fadein');
     } else {
-        $('.' + preloaderClass).removeClass(preloaderClass + ' ' + preloaderClass + '-fadeout');
+        $('.' + config.preloaderClass).removeClass(config.preloaderClass + ' ' + config.preloaderClass + '-fadeout');
     }
 }
 
@@ -62,13 +66,7 @@ function init() {
 }
 
 export {
-    iconPrefix,
-    loadingClass,
-    loadingTag,
-    loaderIcon,
-    loaderAnimation,
-    loadingElem,
-    preloaderClass,
+    config,
     toggleLoading,
     togglePreloader,
     init
