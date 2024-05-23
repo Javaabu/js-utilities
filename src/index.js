@@ -6,6 +6,7 @@ import * as utilities from './utilities';
 import * as conditionalDisplay from './conditional-display';
 import * as postLinks from './post-links';
 import * as submitConfirmation from './submit-confirmation';
+import * as editModal from './edit-modal';
 
 export {
     csrfAdder,
@@ -15,5 +16,6 @@ export {
     utilities,
     conditionalDisplay,
     postLinks,
-    submitConfirmation
+    submitConfirmation,
+    editModal
 };
