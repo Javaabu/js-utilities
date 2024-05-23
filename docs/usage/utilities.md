@@ -1,6 +1,6 @@
 ---
 title: utilities
-sidebar_position: 3
+sidebar_position: 5
 ---
 
 This module provides several JS utility functions that other modules use. It might be useful to add these function to the window for convenience and backwards compatibility.
