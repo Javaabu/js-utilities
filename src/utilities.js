@@ -10,7 +10,6 @@ let config = {
             from: 'bottom',
             align: 'right'
         },
-        type: type,
         allow_dismiss: true,
         animate: {
             enter: 'animate__animated animate__fadeInUp',
@@ -188,10 +187,13 @@ function e(text) {
  * @param type
  */
 function notify(title, message, type) {
+    let notify_cofig = {...config.notify};
+    notify_cofig.type = type;
+
     $.notify({
         message: message,
         title: title
-    }, config.notify);
+    }, notify_cofig);
 }
 
 /**
