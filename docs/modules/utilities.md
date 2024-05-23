@@ -146,6 +146,17 @@ Displays an alert message using [`bootstrap-notify`](https://github.com/mouse027
 </script>
 ```
 
+You can customize the default config of notify by modifying the module's config. 
+
+```javascript
+import { utilities } from '@javaabu/js-utilities';
+
+utilities.config.notify.placement = {
+    from: 'bottom',
+    align: 'right'
+};
+```
+
 ## showAlerts
 
 Displays a list of alerts using `notify()`. Each alert should have a `title`, `text` and a `type`. The 2nd argument determines whether the page should also scroll to the first `.is-invalid` element.

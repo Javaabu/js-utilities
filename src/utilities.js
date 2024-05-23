@@ -4,6 +4,22 @@
 
 import { __ } from './lang';
 
+let config = {
+    notify: {
+        placement: {
+            from: 'bottom',
+            align: 'right'
+        },
+        type: type,
+        allow_dismiss: true,
+        animate: {
+            enter: 'animate__animated animate__fadeInUp',
+            exit: 'animate__animated animate__fadeOutDown'
+        },
+        template: '<div data-notify="container" class="col-xs-11 col-sm-4 alert alert-{0}" role="alert"><span data-notify="icon"></span> <h6 class="alert-heading" data-notify="title">{1}</h6> <div data-notify="message">{2}</div><div class="progress" data-notify="progressbar"><div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div></div><a href="{3}" target="{4}" data-notify="url"></a><button type="button" aria-hidden="true" class="btn-close" aria-label="Close" data-notify="dismiss"></button></div>'
+    }
+};
+
 /**
  * Restrict input characters
  * http://www.qodo.co.uk/blog/javascript-restrict-keyboard-character-input/
@@ -175,18 +191,7 @@ function notify(title, message, type) {
     $.notify({
         message: message,
         title: title
-    },{
-        placement: {
-            from: 'bottom',
-            align: 'right'
-        },
-        type: type,
-        allow_dismiss: true,
-        animate: {
-            enter: 'animate__animated animate__fadeInUp',
-            exit: 'animate__animated animate__fadeOutDown'
-        }
-    });
+    }, config.notify);
 }
 
 /**
@@ -289,5 +294,6 @@ export {
     e,
     notify,
     showValidationErrorMsg,
-    showAlerts
+    showAlerts,
+    config
 };
