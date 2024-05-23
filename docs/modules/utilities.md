@@ -18,6 +18,8 @@ window.getJsonFormData = utilities.getJsonFormData;
 window.setTooltip = utilities.setTooltip;
 window.hideTooltip = utilities.hideTooltip;
 window.e = utilities.e;
+window.showValidationErrorMsg = utilities.showValidationErrorMsg;
+window.showAlerts = utilities.showAlerts;
 ```
 
 ## randString
@@ -132,4 +134,44 @@ Escapes an html string
 <script type="text/javascript">
     console.log(e('<script>alert("Hello")</script>'));
 </script>
+```
+
+## notify
+
+Displays an alert message using [`bootstrap-notify`](https://github.com/mouse0270/bootstrap-notify). Make sure `bootstrap-notify` is included in the page before calling this function.
+
+```html
+<script type="text/javascript">
+    notify('Alert Title!', 'Some alert text', 'danger');
+</script>
+```
+
+## showAlerts
+
+Displays a list of alerts using `notify()`. Each alert should have a `title`, `text` and a `type`. The 2nd argument determines whether the page should also scroll to the first `.is-invalid` element.
+
+```html
+<script type="text/javascript">
+    showAlert([
+        {
+            'title': 'Alert Title!',
+            'text': 'Some alert text',
+            'type': 'danger'
+        }
+    ], true);
+</script>
+```
+
+
+## showValidationErrorMsg
+
+Displays validation errors from an ajax response using [`SweetAlert2`](https://sweetalert2.github.io/). Make sure `SweetAlert2` is included in the page before calling this function.
+
+It also accepts a jQuery object as a second argument to display inline error messages. To display inline error messages, the function expects error display elements to be present inside the specified element. For example, if the attribute name is `city_name`, then its error display element should have the id `city_name-error` and must be a `ul` element.
+
+```html
+<form>
+    <input type="text" name="city_name" />
+    <ul id="city_name-error" style="display: none;"></ul>
+</form>
 ```

@@ -2,6 +2,7 @@
  * Utilities
  */
 
+import { __ } from './lang';
 
 /**
  * Restrict input characters
@@ -164,6 +165,117 @@ function e(text) {
     return $('<div />').text(text).html();
 }
 
+/**
+ * Notification alert
+ * @param title
+ * @param message
+ * @param type
+ */
+function notify(title, message, type) {
+    $.notify({
+        message: message,
+        title: title
+    },{
+        placement: {
+            from: 'bottom',
+            align: 'right'
+        },
+        type: type,
+        allow_dismiss: true,
+        animate: {
+            enter: 'animate__animated animate__fadeInUp',
+            exit: 'animate__animated animate__fadeOutDown'
+        }
+    });
+}
+
+/**
+ * Display validation errors
+ */
+function showValidationErrorMsg(xhr, form) {
+    var response = xhr.responseText;
+
+    try {
+        response = JSON.parse(response);
+    } catch (e) {
+    }
+
+    var msg_title = response.hasOwnProperty('errors') ? __('There are some errors in your inputs.') : response.message;
+    var msg = '<br/><br/>';
+
+    if (response.hasOwnProperty('errors')) {
+        var errors = response.errors;
+        for (var field in errors) {
+            msg += '<div class="mb-2 text-start">';
+            if (errors.hasOwnProperty(field)) {
+                var field_errors = errors[field];
+                msg += '<strong>' + e(titleCase(field, '_')) + ':</strong><ul>';
+                var lis = '';
+
+                for (var i = 0; i < field_errors.length; i++) {
+                    var text = field_errors[i];
+                    lis += '<li>' + e(text) + '</li>';
+                }
+
+                if (form) {
+                    var key = field.replace(/[^a-z0-9 -]/g, '-');
+                    var second_key = '';
+
+                    // check for array validation
+                    if (field.indexOf('.') > -1) {
+                        second_key = field.substring(0, field.indexOf('.'));
+                        second_key = second_key.replace(/[^a-z0-9 -]/g, '-') + '-\\.';
+                    }
+
+                    form.find('#' + key + '-error').html(lis).show();
+
+                    if (second_key) {
+                        form.find('#' + second_key + '-error').html(lis).show();
+                    }
+
+                    form.find('[name="' + field + '"]').addClass('is-invalid');
+                }
+
+                msg += lis;
+                msg += '</ul><div>';
+            }
+        }
+
+        if (form) {
+            var first_error = form.find('.is-invalid').first();
+            if (first_error.length) {
+                $('html, body').animate({
+                    scrollTop: first_error.offset().top - 85
+                }, 1000);
+            }
+        }
+    }
+
+    Swal.fire({
+        title: __('Error!'),
+        html: form ? msg_title : msg_title + msg,
+        icon: 'error',
+        confirmButtonText: __('Ok')
+    });
+}
+
+function showAlerts(alerts, scrollToFirstError) {
+    for (var i in alerts) {
+        var alert = alerts[i];
+        notify(alert.title + ' ', alert.text, alert.type);
+    }
+
+    if (scrollToFirstError) {
+        // scroll to first error
+        var first_error = $('.is-invalid').first();
+        if (first_error.length) {
+            $('html, body').animate({
+                scrollTop: first_error.offset().top
+            }, 1000);
+        }
+    }
+}
+
 export {
     restrictCharacters,
     slugify,
@@ -174,5 +286,8 @@ export {
     getJsonFormData,
     setTooltip,
     hideTooltip,
-    e
+    e,
+    notify,
+    showValidationErrorMsg,
+    showAlerts
 };
