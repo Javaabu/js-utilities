@@ -4,6 +4,7 @@ import * as loaders from './loaders';
 import * as lang from './lang';
 import * as utilities from './utilities';
 import * as conditionalDisplay from './conditional-display';
+import * as postLinks from './post-links';
 
 export {
     csrfAdder,
@@ -11,5 +12,6 @@ export {
     loaders,
     lang,
     utilities,
-    conditionalDisplay
+    conditionalDisplay,
+    postLinks
 };
