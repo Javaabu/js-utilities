@@ -3,6 +3,22 @@ title: utilities
 sidebar_position: 3
 ---
 
+This module provides several JS utility functions that other modules use. It might be useful to add these function to the window for convenience and backwards compatibility.
+
+```javascript
+import { utilities } from '@javaabu/js-utilities';
+
+window.restrictCharacters = utilities.restrictCharacters;
+window.slugify = utilities.slugify;
+window.removeFromHead = utilities.removeFromHead;
+window.randString = utilities.randString;
+window.titleCase = utilities.titleCase;
+window.redirectPage = utilities.redirectPage;
+window.getJsonFormData = utilities.getJsonFormData;
+window.setTooltip = utilities.setTooltip;
+window.hideTooltip = utilities.hideTooltip;
+```
+
 ## randString
 
 Generates a random string of given length consisting of uppercase and lowercase alphanumeric characters.  
