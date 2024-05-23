@@ -7,6 +7,7 @@ import * as conditionalDisplay from './conditional-display';
 import * as postLinks from './post-links';
 import * as submitConfirmation from './submit-confirmation';
 import * as editModal from './edit-modal';
+import * as fileUploadInput from './file-upload-input';
 
 export {
     csrfAdder,
@@ -17,5 +18,6 @@ export {
     conditionalDisplay,
     postLinks,
     submitConfirmation,
-    editModal
+    editModal,
+    fileUploadInput
 };
