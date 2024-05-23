@@ -20,7 +20,9 @@ conditionalDisplay.bind($('.some-element'));
 ```
 
 :::info
+
 The examples given here are using [`javaabu/forms`](https://github.com/Javaabu/forms) Laravel package blade components.
+
 :::
 
 ## data-toggle-checkbox
