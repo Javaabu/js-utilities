@@ -157,6 +157,13 @@ function hideTooltip(el) {
     }, 1000);
 }
 
+/**
+ * Escapes html
+ */
+function e(text) {
+    return $('<div />').text(text).html();
+}
+
 export {
     restrictCharacters,
     slugify,
@@ -166,5 +173,6 @@ export {
     redirectPage,
     getJsonFormData,
     setTooltip,
-    hideTooltip
+    hideTooltip,
+    e
 };

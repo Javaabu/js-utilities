@@ -17,6 +17,7 @@ window.redirectPage = utilities.redirectPage;
 window.getJsonFormData = utilities.getJsonFormData;
 window.setTooltip = utilities.setTooltip;
 window.hideTooltip = utilities.hideTooltip;
+window.e = utilities.e;
 ```
 
 ## randString
@@ -121,4 +122,14 @@ Results in the following console output:
 
 ```html
 'Public User'
+```
+
+## e
+
+Escapes an html string
+
+```html
+<script type="text/javascript">
+    console.log(e('<script>alert("Hello")</script>'));
+</script>
 ```
