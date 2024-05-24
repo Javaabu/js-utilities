@@ -36,7 +36,7 @@ Displays a confirmation dialouge when a form submit button is clicked. This feat
 </form>
 ```
 
-## delete-form
+## .delete-form
 
 Displays a confirmation dialouge when the form is submitted. The form must have an input named `action` with a value of either `delete` or `force_delete`. This class must be used on the form element.
 

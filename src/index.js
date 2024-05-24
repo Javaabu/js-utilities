@@ -8,6 +8,7 @@ import * as postLinks from './post-links';
 import * as submitConfirmation from './submit-confirmation';
 import * as editModal from './edit-modal';
 import * as fileUploadInput from './file-upload-input';
+import * as dateInput from './date-input';
 
 export {
     csrfAdder,
@@ -19,5 +20,6 @@ export {
     postLinks,
     submitConfirmation,
     editModal,
-    fileUploadInput
+    fileUploadInput,
+    dateInput
 };

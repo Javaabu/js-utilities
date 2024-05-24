@@ -39,7 +39,7 @@ Performs an ajax request when the element is clicked and redirects the page to t
     data-method="PATCH">Approve</a>
 ```
 
-## delete-link
+## .delete-link
 
 Performs an ajax DELETE request to the given request url when the element is clicked and redirects the page to the given redirect url. This feature supports the following data attributes:
 

@@ -22,7 +22,7 @@ window.showValidationErrorMsg = utilities.showValidationErrorMsg;
 window.showAlerts = utilities.showAlerts;
 ```
 
-## randString
+## randString(int length)
 
 Generates a random string of given length consisting of uppercase and lowercase alphanumeric characters.  
 
@@ -40,7 +40,7 @@ Results in the following console output
 'IpaUH2sKb9'
 ```
 
-## redirectPage
+## redirectPage(string url)
 
 Redirects the current page to the given URL. If no URL is provided reloads the page.
 
@@ -52,7 +52,7 @@ For example to redirect the current page to Google:
 </script>
 ```
 
-## removeFromHead
+## removeFromHead(string needle, string haystack)
 
 Removes a substring from the beginning of another string.
 
@@ -70,7 +70,7 @@ Results in the following console output:
 'google.com'
 ```
 
-## restrictCharacters
+## restrictCharacters(jQuery element, Event event, RegEx allowed_characters)
 
 Restricts input characters to a text input to only specific characters defined by regex.
 
@@ -88,7 +88,7 @@ For example, to restrict inputs to only alphanumeric characters and hyphen:
 </script>
 ```
 
-## slugify
+## slugify(string text, string delimiter = '-')
 
 Converts the given text to a slug format using the given text separator.
 
@@ -108,7 +108,7 @@ For example, to automatically generate a kebab case slug when another text input
 </script>
 ```
 
-## titleCase
+## titleCase(string text, string delimiter)
 
 Converts a string with the given delimiter to Title Case.
 
@@ -126,7 +126,7 @@ Results in the following console output:
 'Public User'
 ```
 
-## e
+## e()
 
 Escapes an html string
 
@@ -136,9 +136,10 @@ Escapes an html string
 </script>
 ```
 
-## notify
+## notify(string title, string message, string type)
 
 Displays an alert message using [`bootstrap-notify`](https://github.com/mouse0270/bootstrap-notify). Make sure `bootstrap-notify` is included in the page before calling this function.
+`type` can be `info`, `success`, `warning` or `danger`.
 
 ```html
 <script type="text/javascript">
@@ -157,13 +158,13 @@ utilities.config.notify.placement = {
 };
 ```
 
-## showAlerts
+## showAlerts(Array alerts, bool scroll_to_first_error)
 
 Displays a list of alerts using `notify()`. Each alert should have a `title`, `text` and a `type`. The 2nd argument determines whether the page should also scroll to the first `.is-invalid` element.
 
 ```html
 <script type="text/javascript">
-    showAlert([
+    showAlerts([
         {
             'title': 'Alert Title!',
             'text': 'Some alert text',
@@ -174,7 +175,7 @@ Displays a list of alerts using `notify()`. Each alert should have a `title`, `t
 ```
 
 
-## showValidationErrorMsg
+## showValidationErrorMsg(Xhr response, jQuery form_element = null)
 
 Displays validation errors from an ajax response using [`SweetAlert2`](https://sweetalert2.github.io/). Make sure `SweetAlert2` is included in the page before calling this function.
 
