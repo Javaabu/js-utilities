@@ -6,8 +6,8 @@ let config = {
     iconPrefix: 'fa',
 }
 
-config.nextArrowIcon = config.iconPrefix + '-long-arrow-right';
-config.prevArrowIcon = config.iconPrefix + '-long-arrow-left';
+config.nextArrowIcon = config.iconPrefix + '-chevron-right';
+config.prevArrowIcon = config.iconPrefix + '-chevron-left';
 
 function bind(root_elem) {
     // clear date

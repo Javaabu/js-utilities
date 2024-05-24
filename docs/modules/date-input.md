@@ -25,8 +25,8 @@ By default, `dateInput` are designed to use [FontAwesome](https://fontawesome.co
 import { dateInput } from '@javaabu/js-utilities';
 
 dateInput.config.iconPrefix = 'fa';
-dateInput.config.nextArrowIcon = dateInput.config.iconPrefix + '-long-arrow-right';
-dateInput.config.prevArrowIcon = dateInput.config.iconPrefix + '-long-arrow-left';
+dateInput.config.nextArrowIcon = dateInput.config.iconPrefix + '-chevron-right';
+dateInput.config.prevArrowIcon = dateInput.config.iconPrefix + '-chevron-left';
 ```
 
 ## .datetime-picker
