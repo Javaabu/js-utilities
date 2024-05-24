@@ -60,4 +60,4 @@ function init() {
     });
 }
 
-export {bind, init};
+export {bind, init, config};
