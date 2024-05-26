@@ -10,6 +10,7 @@ import * as editModal from './edit-modal';
 import * as fileUploadInput from './file-upload-input';
 import * as dateInput from './date-input';
 import * as slugInput from './slug-input';
+import * as contentSearch from './content-search';
 
 export {
     csrfAdder,
@@ -23,5 +24,6 @@ export {
     editModal,
     fileUploadInput,
     dateInput,
-    slugInput
+    slugInput,
+    contentSearch
 };
