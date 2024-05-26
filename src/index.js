@@ -11,6 +11,12 @@ import * as fileUploadInput from './file-upload-input';
 import * as dateInput from './date-input';
 import * as slugInput from './slug-input';
 import * as contentSearch from './content-search';
+import * as urlInput from './url-input';
+import * as selectAllCheckbox from './select-all-checkbox';
+import * as codeInput from './code-input';
+import * as deletable from './deletable';
+import * as sortable from './sortable';
+import * as editSelected from './edit-selected';
 
 export {
     csrfAdder,
@@ -25,5 +31,11 @@ export {
     fileUploadInput,
     dateInput,
     slugInput,
-    contentSearch
+    contentSearch,
+    urlInput,
+    selectAllCheckbox,
+    codeInput,
+    deletable,
+    sortable,
+    editSelected
 };
