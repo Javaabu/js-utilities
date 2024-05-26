@@ -9,6 +9,7 @@ import * as submitConfirmation from './submit-confirmation';
 import * as editModal from './edit-modal';
 import * as fileUploadInput from './file-upload-input';
 import * as dateInput from './date-input';
+import * as slugInput from './slug-input';
 
 export {
     csrfAdder,
@@ -21,5 +22,6 @@ export {
     submitConfirmation,
     editModal,
     fileUploadInput,
-    dateInput
+    dateInput,
+    slugInput
 };

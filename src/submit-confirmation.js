@@ -3,8 +3,6 @@
  */
 
 import { __ } from './lang';
-import { showValidationErrorMsg, redirectPage } from './utilities';
-import { toggleLoading } from './loaders';
 
 function bind(root_elem) {
     // confirm button
