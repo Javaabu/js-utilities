@@ -5,12 +5,6 @@ sidebar_position: 1.0
 
 # JS Utilities
 
-:::danger
-
-This package is currently under development. If anything works, that's a surprise.
-
-:::
-
 [JS Utilities](https://github.com/Javaabu/js-utilities) provides helpful JavaScript functionalities that you can use in your Laravel app.
 
 This package provides multiple features in the forms of separate ES6 modules which can be imported as needed.
