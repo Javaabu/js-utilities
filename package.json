@@ -4,7 +4,7 @@
   "description": "JavaScript utilities used for Javaabu Laravel projects",
   "main": "src/index.js",
   "files": [
-    "src/scss"
+    "src"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
