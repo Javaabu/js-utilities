@@ -1,0 +1,42 @@
+/**
+SweetAlert 2
+ */
+
+$swal2-white: $white;
+$swal2-black: $black;
+
+// POPUP
+$swal2-border-radius: $modal-content-border-radius;
+$swal2-box-shadow: $modal-content-box-shadow-sm-up;
+
+// ICONS
+$swal2-icon-size: 4em !default;
+$swal2-success: $success;
+$swal2-error: $danger;
+$swal2-warning: $warning;
+$swal2-info: $info;
+$swal2-question: $primary;
+
+// CONFIRM BUTTON
+$swal2-confirm-button-border-radius: $btn-border-radius;
+$swal2-confirm-button-background-color: $primary;
+$swal2-confirm-button-color: color-contrast($swal2-confirm-button-background-color);
+
+// DENY BUTTON
+$swal2-deny-button-border-radius: $btn-border-radius;
+$swal2-deny-button-background-color: $danger;
+$swal2-deny-button-color: color-contrast($swal2-deny-button-background-color);
+
+// CANCEL BUTTON
+$swal2-cancel-button-border-radius: $btn-border-radius;
+$swal2-cancel-button-background-color: $gray-300;
+$swal2-cancel-button-color: color-contrast($swal2-cancel-button-background-color);
+
+// TITLE
+$swal2-title-font-size: $font-size-lg;
+$swal2-title-font-weight: $font-weight-bold;
+
+// HTML CONTAINER
+$swal2-html-container-font-size: $font-size-base;
+
+@import 'sweetalert2/src/sweetalert2';

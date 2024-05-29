@@ -3,6 +3,9 @@
   "version": "2.14.0",
   "description": "JavaScript utilities used for Javaabu Laravel projects",
   "main": "src/index.js",
+  "files": [
+    "src/scss"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -23,5 +26,9 @@
   "bugs": {
     "url": "https://github.com/Javaabu/js-utilities/issues"
   },
-  "homepage": "https://github.com/Javaabu/js-utilities#readme"
+  "homepage": "https://github.com/Javaabu/js-utilities#readme",
+  "dependencies": {
+    "select2-bootstrap-5-theme": "github:g10f/select2-bootstrap-5-theme",
+    "sweetalert2": "^11.10.4"
+  }
 }

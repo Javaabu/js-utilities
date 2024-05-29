@@ -1,0 +1,54 @@
+/**
+Preloader
+ */
+
+@use "sass:math";
+
+body.page-loading {
+    &.page-loading-fadein {
+        &::after {
+            animation-name: fadeIn;
+        }
+    }
+
+    &.page-loading-fadeout {
+        &::after {
+            animation-name: fadeOut;
+        }
+    }
+
+    &::after {
+        display: block;
+        position: fixed;
+        content: '';
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background-color: rgba($white, 0.5);
+        z-index: $zindex-modal + 2;
+        animation-duration: 0.3s;
+        animation-fill-mode: both;
+    }
+
+    &::before {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        width: $preloader-width;
+        height: $preloader-width;
+        top: 50%;
+        left: 50%;
+        margin-top: - math.div($preloader-width, 2);
+        margin-left: - math.div($preloader-width, 2);
+        content: $preloader-icon;
+        font-weight: 900;
+        font-family: $font-family-icon;
+        font-size: $preloader-font-size;
+        color: $primary;
+        animation: spin 2s infinite linear;
+        z-index: $zindex-modal + 3;
+    }
+}
+
