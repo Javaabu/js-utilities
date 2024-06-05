@@ -183,94 +183,104 @@ function bind(root_elem) {
     root_elem.find('[data-select-child]').on('change', function () {
         var el = $(this);
         var selected_val = el.val();
-        var child_select = $(el.data('select-child'));
+        var child_selects = $(el.data('select-child'));
         var parent_fallback = el.data('fallback');
-        var fallback = child_select.data('fallback');
         var disable_child = el.data('disable-child') || false;
 
         if (selected_val) {
-            var name_field = child_select.data('name-field') || 'name';
-            var id_field = child_select.data('id-field') || 'id';
-            var url = child_select.data('select-ajax-url');
-            var filter = child_select.data('filter-field');
+            child_selects.each(function () {
+                var child_select = $(this);
 
-            url = url.replace(':value', selected_val);
+                var fallback = child_select.data('fallback');
+                var name_field = child_select.data('name-field') || 'name';
+                var id_field = child_select.data('id-field') || 'id';
+                var url = child_select.data('select-ajax-url');
+                var filter = child_select.data('filter-field');
 
-            var params = {
-                fields: id_field + ',' + name_field,
-                per_page: -1
-            };
-            params['include'] = '';
-            params['append'] = '';
-            params['filter'] = {};
-            params['filter'][filter] = selected_val;
+                url = url.replace(':value', selected_val);
 
-            var child_val = child_select.val() || '';
+                var params = {
+                    fields: id_field + ',' + name_field,
+                    per_page: -1
+                };
+                params['include'] = '';
+                params['append'] = '';
+                params['filter'] = {};
+                params['filter'][filter] = selected_val;
 
-            $.ajax({
-                url: url,
-                dataType: 'json',
-                data: params,
-                beforeSend: function () {
-                    child_select.prop('disabled', true);
-                    child_select.html('<option value="">Loading...</option>');
-                },
-                error: function () {
-                    child_select.html('<option value="">Error Loading Options</option>');
-                },
-                success: function (result) {
-                    var options = '';
-                    $.each(result, function (i) {
-                        // escape html
-                        // https://coderwall.com/p/jt7ysq/encode-string-to-html-entities-via-jquery
-                        var option_val = $('<div />').text(result[i][id_field]).html();
-                        var option_text = $('<div />').text(result[i][name_field]).html();
+                var child_val = child_select.val() || '';
 
-                        options += '<option value="' + option_val + '">' + option_text + '</option>';
-                    });
+                $.ajax({
+                    url: url,
+                    dataType: 'json',
+                    data: params,
+                    beforeSend: function () {
+                        child_select.prop('disabled', true);
+                        child_select.html('<option value="">Loading...</option>');
+                    },
+                    error: function () {
+                        child_select.html('<option value="">Error Loading Options</option>');
+                    },
+                    success: function (result) {
+                        var options = '';
+                        $.each(result, function (i) {
+                            // escape html
+                            // https://coderwall.com/p/jt7ysq/encode-string-to-html-entities-via-jquery
+                            var option_val = $('<div />').text(result[i][id_field]).html();
+                            var option_text = $('<div />').text(result[i][name_field]).html();
 
-                    child_select.html(options);
-                    child_select.val(child_val);
+                            options += '<option value="' + option_val + '">' + option_text + '</option>';
+                        });
 
-                    if ( fallback ) {
-                        if ( result.length ) {
-                            //hide the fallback
-                            $(fallback).prop('disabled', true).hide();
+                        child_select.html(options);
+                        child_select.val(child_val);
 
-                            //display select
-                            child_select.prop('disabled', false);
-                            child_select.next().show();
+                        if (fallback) {
+                            if (result.length) {
+                                //hide the fallback
+                                $(fallback).prop('disabled', true).hide();
+
+                                //display select
+                                child_select.prop('disabled', false);
+                                child_select.next().show();
+                            } else {
+                                //hide select
+                                child_select.next().hide();
+                                child_select.prop('disabled', true);
+
+                                //display fallback
+                                $(fallback).prop('disabled', false).show();
+                            }
                         } else {
-                            //hide select
-                            child_select.next().hide();
-                            child_select.prop('disabled', true);
-
-                            //display fallback
-                            $(fallback).prop('disabled', false).show();
+                            child_select.prop('disabled', (disable_child && !result.length ? true : false));
                         }
-                    } else {
-                        child_select.prop('disabled', (disable_child && !result.length ? true : false));
-                    }
 
-                    child_select.trigger('change');
-                }
+                        child_select.trigger('change');
+                    }
+                });
             });
         } else {
-            child_select.html('');
-            child_select.prop('disabled', true);
-            if ( fallback ) {
-                child_select.next().hide();
-                $(fallback).show();
+            child_selects.each(function () {
+                var child_select = $(this);
 
-                // if parent has fallback, and it's enabled
-                if ( parent_fallback && !$(parent_fallback).prop('disabled') ) {
-                    $(fallback).prop('disabled', false);
-                } else {
-                    $(fallback).prop('disabled', true);
+                var fallback = child_select.data('fallback');
+
+                child_select.html('');
+                child_select.prop('disabled', true);
+                if (fallback) {
+                    child_select.next().hide();
+                    $(fallback).show();
+
+                    // if parent has fallback, and it's enabled
+                    if (parent_fallback && !$(parent_fallback).prop('disabled')) {
+                        $(fallback).prop('disabled', false);
+                    } else {
+                        $(fallback).prop('disabled', true);
+                    }
+
                 }
-
-            }
-            child_select.trigger('change');
+                child_select.trigger('change');
+            });
         }
     });
 
