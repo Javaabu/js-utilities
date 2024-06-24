@@ -4,7 +4,7 @@
 
 import { __ } from './lang';
 import { showValidationErrorMsg, redirectPage, notify } from './utilities';
-import { toggleLoading } from './loaders';
+import { toggleLoading, config } from './loaders';
 
 let uploading_file = false;
 
@@ -95,7 +95,7 @@ function bind(root_elem) {
 
             beforeSend: function () {
                 uploading_file = true;
-                upload_btn.html('<i></i> ' + __('Uploading...'));
+                upload_btn.html(config.loadingElem + ' ' + __('Uploading...'));
                 toggleLoading(upload_btn, true);
             },
 
@@ -171,7 +171,7 @@ function bind(root_elem) {
 
                 beforeSend: function () {
                     uploading_file = true;
-                    remove_btn.html('<i></i> ' + __('Removing...'));
+                    remove_btn.html(config.loadingElem + ' ' + __('Removing...'));
                     toggleLoading(remove_btn, true);
                 },
 
