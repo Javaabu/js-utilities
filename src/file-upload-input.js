@@ -206,7 +206,7 @@ function bind(root_elem) {
         Swal.fire({
             title: __('Are you sure?'),
             text: __('You will not be able to undo deleting this file!'),
-            type: 'warning',
+            icon: 'warning',
             showCancelButton: true,
             confirmButtonText: __('Yes, remove it!'),
             customClass: {
