@@ -1,0 +1,221 @@
+/**
+ File Input
+ */
+
+.btn-file {
+    overflow: hidden;
+    position: relative;
+    vertical-align: middle;
+
+    & > input {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 0;
+        opacity: 0;
+        filter: alpha(opacity=0);
+        font-size: 23px;
+        height: 100%;
+        width: 100%;
+        direction: ltr;
+        cursor: pointer;
+    }
+}
+
+.fileinput {
+    margin-bottom: 9px;
+    display: inline-block;
+
+    .form-control {
+        padding-top: 7px;
+        padding-bottom: 5px;
+        display: inline-block;
+        margin-bottom: 0px;
+        vertical-align: middle;
+        cursor: text;
+    }
+
+    .btn {
+        vertical-align: middle;
+    }
+}
+
+.fileinput-inline .fileinput-controls {
+    display: inline;
+}
+
+.fileinput-filename {
+    vertical-align: middle;
+    display: inline-block;
+    overflow: hidden;
+}
+.form-control .fileinput-filename {
+    vertical-align: bottom;
+}
+
+.fileinput.input-group {
+    display: table;
+
+    & > * {
+        position: relative;
+        z-index: 2;
+    }
+
+    & > .btn-file {
+        z-index: 1;
+    }
+}
+
+// Not 100% correct, but helps in typical use case
+.fileinput-new.input-group .btn-file,
+.fileinput-new .input-group .btn-file {
+    border-radius: 0 $border-radius $border-radius 0;
+
+    &.btn-xs,
+    &.btn-sm {
+        border-radius: 0 $border-radius-sm $border-radius-sm 0;
+    }
+    &.btn-lg {
+        border-radius: 0 $border-radius-lg $border-radius-lg 0;
+    }
+}
+
+
+// Input group fixes
+.input-group-addon:not(:first-child) {
+    border-left: 0;
+}
+
+
+
+// Material Admin Specific
+
+.fileinput {
+    position: relative;
+    width: 100%;
+
+    .close {
+          position: absolute;
+          top: 5px;
+          font-size: 12px;
+          float: none;
+          opacity: 1;
+          font-weight: 500;
+          border: 1px solid #ccc;
+          min-width: 19px;
+          text-align: center;
+          height: 19px;
+          line-height: 16px;
+          border-radius: 19px;
+          right: 0;
+          visibility: hidden;
+
+          &:hover {
+            background: #eee;
+          }
+    }
+
+    &.is-invalid {
+        .fileinput-preview {
+            border-color: $form-feedback-invalid-color;
+        }
+
+        .btn-file.btn-primary {
+            border-color: $form-feedback-invalid-color !important;
+        }
+    }
+
+    .input-group-addon {
+        padding: 0 10px;
+        vertical-align: middle;
+    }
+
+    .fileinput-preview-outer-wrapper {
+        &:not(.fullwidth-preview) {
+            max-width: 200px;
+        }
+    }
+
+    .fileinput-preview-wrapper {
+        width: 100%;
+        height: 100%;
+        border: 1px solid $input-border-color;
+
+        img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        &.cover-preview img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+
+        &.rounded-circle img {
+            border-radius: 50%;
+        }
+    }
+
+    .fileinput-image-missing,
+    .fileinput-preview {
+        padding: $input-padding-x;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+    }
+
+    .fileinput-image-missing {
+        flex-direction: column;
+        text-align: center;
+        color: $input-border-color;
+        transition: all 300ms ease-in-out;
+
+        .image-icon {
+            font-size: $h2-font-size;
+            margin-bottom: map-get($spacers, 2);
+        }
+    }
+}
+
+.fileinput:not(.disabled) {
+
+    .fileinput-preview-wrapper[data-trigger="fileinput"] {
+        cursor: pointer;
+        transition: all 300ms ease-in-out;
+
+        &:hover {
+            background-color: $gray-200;
+
+            .fileinput-image-missing {
+                color: $gray-600;
+            }
+        }
+    }
+}
+
+.fileinput.disabled {
+    .fileinput-preview-wrapper {
+        background-color: $input-disabled-bg;
+        cursor: not-allowed;
+    }
+
+    .close {
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+}
+
+.fileinput-exists .close {
+    visibility: visible;
+}
+
+.fileinput-exists .fileinput-new,
+.fileinput-new .fileinput-exists {
+    display: none;
+}

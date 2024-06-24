@@ -1,0 +1,199 @@
+/**
+ File Input
+ */
+
+@import 'fileinput-variables';
+
+.fileinput-wrapper {
+    display: flex;
+    border: $input-border-width solid $input-border-color;
+    border-radius: $input-border-radius;
+
+    .btn-file {
+        flex-grow: 1;
+    }
+
+    .fileinput-filelink {
+        display: block;
+        text-align: inherit;
+        flex-grow: 1;
+    }
+
+    .btn-dismiss {
+        border: 0;
+        border-left: $input-border-width solid $input-border-color;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+}
+
+.fileinput {
+    .fileinput-preview-wrapper {
+        border: $input-border-width solid $input-border-color;
+        border-radius: $input-border-radius;
+        @include gradient-bg($fileinput-image-selector-bg);
+        @include transition($btn-transition);
+        margin-bottom: $fileinput-image-preview-margin-bottom;
+
+        &:not(.fullwidth-preview) {
+            max-width: $fileinput-image-preview-max-width;
+        }
+
+        img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        &.cover-preview img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+
+        &.rounded-circle img {
+            border-radius: 50%;
+        }
+    }
+
+    &.is-invalid {
+        &.fileinput-wrapper,
+        .fileinput-preview-wrapper {
+            border-color: $form-invalid-border-color;
+        }
+    }
+
+    .fileinput-image-missing,
+    .fileinput-preview {
+        padding: $fileinput-image-preview-padding;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .fileinput-image-missing {
+        flex-direction: column;
+        text-align: center;
+        color: $fileinput-image-selector-color;
+        @include transition($btn-transition);
+
+        .image-icon {
+            font-size: $h2-font-size;
+            margin-bottom: $fileinput-image-selector-icon-margin-bottom;
+        }
+    }
+
+    &.fileinput-exists .fileinput-filename:empty ~ .btn-file {
+        flex-grow: 0;
+        overflow: visible;
+    }
+
+    &.fileinput-exists .fileinput-filename:not(:empty) ~ .fileinput-filelink {
+        display: none;
+    }
+}
+
+.btn-file-selector {
+    display: inline-block;
+    padding: $input-padding-y $input-padding-x;
+    color: $fileinput-button-color;
+    @include gradient-bg($fileinput-button-bg);
+    border-color: $input-border-color;
+    border-style: solid;
+    border-width: 0;
+    border-inline-end-width: $input-border-width;
+    border-radius: 0;
+    border-top-left-radius: $input-border-radius;
+    border-bottom-left-radius: $input-border-radius;
+    @include transition($btn-transition);
+}
+
+.fileinput-btn.btn-file-selector {
+    border-width: $btn-border-width;
+    border-radius: $btn-border-radius;
+}
+
+.fileinput:not(.disabled) {
+    .btn-file:hover {
+        .btn-file-selector {
+            background-color: $fileinput-button-hover-bg;
+            color: $fileinput-button-hover-color;
+        }
+    }
+
+    .fileinput-btn.btn-file-selector:hover {
+        background-color: $fileinput-button-hover-bg;
+        color: $fileinput-button-hover-color;
+    }
+
+    .fileinput-preview-wrapper[data-trigger="fileinput"] {
+        cursor: pointer;
+
+        &:hover {
+            background-color: $fileinput-button-hover-bg;
+            color: $fileinput-button-hover-color;
+
+            .fileinput-image-missing {
+                color: $fileinput-image-selector-hover-color;
+            }
+        }
+    }
+}
+
+.btn-file {
+    display: flex;
+    overflow: hidden;
+    position: relative;
+
+    .fileinput-missing {
+        color: $input-placeholder-color;
+    }
+
+    .fileinput-selected-filename {
+        display: block;
+        padding: $input-padding-y $input-padding-x;
+        flex-grow: 1;
+    }
+
+    .fileinput-selected-filename:empty {
+        display: none;
+    }
+
+    & > input[type="file"] {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 0;
+        opacity: 0;
+        filter: alpha(opacity=0);
+        height: 100%;
+        width: 100%;
+        cursor: pointer;
+
+        &:disabled {
+            display: none;
+        }
+    }
+}
+
+.fileinput-new .fileinput-file-exists-only,
+.fileinput-exists .fileinput-new,
+.fileinput-new .fileinput-exists {
+    display: none;
+}
+
+.fileinput.disabled {
+    &.fileinput-wrapper {
+        background-color: $fileinput-disabled-bg;
+    }
+
+    .btn-file-selector {
+        background-color: $fileinput-button-disabled-bg;
+        color: $fileinput-button-disabled-color;
+        cursor: not-allowed;
+    }
+
+    .fileinput-preview-wrapper {
+        background-color: $fileinput-image-selector-disabled-bg;
+        cursor: not-allowed;
+    }
+}

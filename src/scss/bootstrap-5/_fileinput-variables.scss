@@ -1,0 +1,19 @@
+/**
+ File Input Variables
+ */
+
+$fileinput-disabled-bg: $input-disabled-bg !default;
+$fileinput-button-bg: $form-file-button-bg !default;
+$fileinput-button-color: $form-file-button-color !default;
+$fileinput-button-hover-bg: $form-file-button-hover-bg !default;
+$fileinput-button-hover-color: null !default;
+$fileinput-button-disabled-bg: $fileinput-button-bg !default;
+$fileinput-button-disabled-color: $gray-500 !default;
+$fileinput-image-preview-max-width: 200px !default;
+$fileinput-image-preview-padding: $input-padding-x !default;
+$fileinput-image-selector-bg: $fileinput-button-bg !default;
+$fileinput-image-selector-disabled-bg: $fileinput-disabled-bg !default;
+$fileinput-image-selector-color: $gray-400 !default;
+$fileinput-image-selector-hover-color: $gray-500 !default;
+$fileinput-image-selector-icon-margin-bottom: map-get($spacers, 2) !default;
+$fileinput-image-preview-margin-bottom: $form-label-margin-bottom !default;
