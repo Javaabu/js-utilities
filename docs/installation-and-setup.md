@@ -40,4 +40,5 @@ This package also provides some SASS styling for Bootstrap 5 and Material Admin 
 ```scss
 // Material Admin 2.6
 @import '@javaabu/js-utilities/src/scss/material-admin-26/fileinput';
+@import '@javaabu/js-utilities/src/scss/material-admin-26/pagination';
 ```

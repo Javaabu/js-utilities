@@ -1,0 +1,31 @@
+/**
+Pagination
+ */
+
+.cursor-pagination {
+    .paginate_button {
+        width: auto;
+        min-width: 90px;
+        font-size: $font-size-base;
+        border-radius: $border-radius;
+        padding: 0 $input-btn-padding-x;
+    }
+
+    .paginate_button.previous::before {
+        margin-right: map-get($spacers, 2);
+    }
+
+    .paginate_button.next {
+        &::before {
+            display: none;
+        }
+
+        &::after {
+            content: "\f301";
+            font-family: $font-family-icon;
+            font-size: $font-size-base;
+            line-height: 2.55rem;
+            margin-left: map-get($spacers, 2);
+        }
+    }
+}
