@@ -70,7 +70,9 @@ function bind(root_elem) {
                         title: result.title,
                         text: result.message,
                         icon: 'success',
-                        timer: 10 * 1000
+                        timer: 10 * 1000,
+                        scrollbarPadding: false,
+                        heightAuto: false
                     }).then(function (result) {
                         redirectPage(redirect_url);
                     });
@@ -85,7 +87,9 @@ function bind(root_elem) {
                     Swal.fire({
                         title: __('Error!'),
                         text: __('An error occurred while saving.'),
-                        icon: 'error'
+                        icon: 'error',
+                        scrollbarPadding: false,
+                        heightAuto: false
                     });
                 }
             }

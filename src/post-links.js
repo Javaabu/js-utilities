@@ -55,7 +55,9 @@ function bind(root_elem) {
                             Swal.fire({
                                 title: __('Error!'),
                                 text: __('An error occurred while performing the action.'),
-                                icon: 'error'
+                                icon: 'error',
+                                scrollbarPadding: false,
+                                heightAuto: false
                             });
                         }
                     }
@@ -70,6 +72,9 @@ function bind(root_elem) {
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonText: __('Yes, delete it!'),
+                    cancelButtonText: __('Cancel'),
+                    scrollbarPadding: false,
+                    heightAuto: false,
                     customClass: {
                         confirmButton: 'btn btn-danger',
                         cancelButton: 'btn btn-light'
@@ -97,6 +102,9 @@ function bind(root_elem) {
             icon: 'warning',
             showCancelButton: true,
             confirmButtonText: __('Yes, delete it!'),
+            cancelButtonText: __('Cancel'),
+            scrollbarPadding: false,
+            heightAuto: false,
             customClass: {
                 confirmButton: 'btn btn-danger',
                 cancelButton: 'btn btn-light'
@@ -116,7 +124,9 @@ function bind(root_elem) {
                         Swal.fire({
                             title: __('Deleted!'),
                             text: __('The record has been deleted.'),
-                            icon: 'success'
+                            icon: 'success',
+                            scrollbarPadding: false,
+                            heightAuto: false
                         }).then(
                             function () {
                                 redirectPage(redirect_url);
@@ -127,7 +137,9 @@ function bind(root_elem) {
                         Swal.fire({
                             title: __('Error!'),
                             text: __('An error occurred while deleting.'),
-                            icon: 'error'
+                            icon: 'error',
+                            scrollbarPadding: false,
+                            heightAuto: false
                         });
                     }
                 });

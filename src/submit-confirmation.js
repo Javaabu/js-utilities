@@ -19,6 +19,9 @@ function bind(root_elem) {
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonText: __('Yes, continue!'),
+                cancelButtonText: __('Cancel'),
+                scrollbarPadding: false,
+                heightAuto: false,
                 customClass: {
                     confirmButton: 'btn btn-primary',
                     cancelButton: 'btn btn-light'
@@ -50,6 +53,9 @@ function bind(root_elem) {
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonText: __('Yes, delete it!'),
+                cancelButtonText: __('Cancel'),
+                scrollbarPadding: false,
+                heightAuto: false,
                 customClass: {
                     confirmButton: 'btn btn-danger',
                     cancelButton: 'btn btn-light'

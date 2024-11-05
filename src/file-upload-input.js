@@ -132,7 +132,9 @@ function bind(root) {
                         Swal.fire({
                             title: __('Error!'),
                             text: __('An error occurred while uploading the file.'),
-                            icon: 'error'
+                            icon: 'error',
+                            scrollbarPadding: false,
+                            heightAuto: false
                         });
                     }
                 }
@@ -208,7 +210,9 @@ function bind(root) {
                             Swal.fire({
                                 title: __('Error!'),
                                 text: __('An error occurred while removing the file.'),
-                                icon: 'error'
+                                icon: 'error',
+                                scrollbarPadding: false,
+                                heightAuto: false
                             });
                         }
                     }
@@ -222,6 +226,9 @@ function bind(root) {
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonText: __('Yes, remove it!'),
+                cancelButtonText: __('Cancel'),
+                scrollbarPadding: false,
+                heightAuto: false,
                 customClass: {
                     confirmButton: 'btn btn-danger',
                     cancelButton: 'btn btn-light'

@@ -262,7 +262,9 @@ function showValidationErrorMsg(xhr, form) {
         title: __('Error!'),
         html: form ? msg_title : msg_title + msg,
         icon: 'error',
-        confirmButtonText: __('Ok')
+        confirmButtonText: __('Ok'),
+        scrollbarPadding: false,
+        heightAuto: false
     });
 }
 
