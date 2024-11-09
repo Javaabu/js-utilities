@@ -124,6 +124,7 @@ function bind(root_elem) {
                         Swal.fire({
                             title: __('Deleted!'),
                             text: __('The record has been deleted.'),
+                            confirmButtonText: __('OK'),
                             icon: 'success',
                             scrollbarPadding: false,
                             heightAuto: false

@@ -69,6 +69,7 @@ function bind(root_elem) {
                     Swal.fire({
                         title: result.title,
                         text: result.message,
+                        confirmButtonText: __('OK'),
                         icon: 'success',
                         timer: 10 * 1000,
                         scrollbarPadding: false,
