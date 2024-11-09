@@ -126,14 +126,14 @@ function init() {
                     } else if (type === 'checkbox') {
                         elem.prop('checked', value == elem.val());
                     } else if (type === 'radio') {
-                        // check the value
-                        modal.find('radio[name="' + field + '"][value="' + value + '"]')
-                            .prop('checked', true)
+                        // uncheck other values
+                        modal.find('input[type="radio"][name="' + field + '"]:not([value="' + value + '"])')
+                            .prop('checked', false)
                             .trigger('change');
 
-                        // uncheck other values
-                        modal.find('radio[name="' + field + '"]:not(value="' + value + '")')
-                            .prop('checked', false)
+                        // check the value
+                        modal.find('input[type="radio"][name="' + field + '"][value="' + value + '"]')
+                            .prop('checked', true)
                             .trigger('change');
                     } else {
                         elem.val(value);
