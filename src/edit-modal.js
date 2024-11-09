@@ -3,7 +3,7 @@
  */
 
 import { __ } from './lang';
-import { showValidationErrorMsg, redirectPage } from './utilities';
+import { showValidationErrorMsg, redirectPage, getJsonFormData } from './utilities';
 import { toggleLoading } from './loaders';
 
 function bind(root_elem) {
@@ -125,11 +125,23 @@ function init() {
                         });
                     } else if (type === 'checkbox') {
                         elem.prop('checked', value == elem.val());
+                    } else if (type === 'radio') {
+                        // check the value
+                        modal.find('radio[name="' + field + '"][value="' + value + '"]')
+                            .prop('checked', true)
+                            .trigger('change');
+
+                        // uncheck other values
+                        modal.find('radio[name="' + field + '"]:not(value="' + value + '")')
+                            .prop('checked', false)
+                            .trigger('change');
                     } else {
                         elem.val(value);
                     }
 
-                    elem.trigger('change');
+                    if (type !== 'radio') {
+                        elem.trigger('change');
+                    }
                 }
             });
 
