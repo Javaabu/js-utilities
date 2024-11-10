@@ -146,6 +146,7 @@ function init() {
             });
 
             modal.find('.invalid-feedback').hide();
+            modal.find('.is-invalid').removeClass('is-invalid');
 
             if (title) {
                 modal.find('.modal-title').text(title);
