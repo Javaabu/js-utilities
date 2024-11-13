@@ -8,7 +8,7 @@ import { toggleLoading } from './loaders';
 
 function bind(root_elem) {
     // post
-    root_elem.find('[data-post-url]').click(function(e){
+    $('body').on('click', '[data-post-url]', function (e) {
         e.preventDefault();
         var request_url = $(this).data('post-url');
         var redirect_url = $(this).data('redirect-url');
@@ -91,7 +91,7 @@ function bind(root_elem) {
     });
 
     // delete
-    root_elem.find('.delete-link').click(function(e){
+    $('body').on('click', '.delete-link', function (e) {
         e.preventDefault();
         var request_url = $(this).data('request-url');
         var redirect_url = $(this).data('redirect-url');
