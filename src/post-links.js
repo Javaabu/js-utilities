@@ -15,7 +15,14 @@ function bind(root_elem) {
         var params = $(this).data('params') || {};
         var method = $(this).data('method') || 'POST';
         var is_delete = $(this).data('delete') || false;
+        var loading_target = $(this).data('loading-target');
+        var loading_class = $(this).data('loading-class') || 'loading';
+        var loading_target_elem = null;
         var _this = this;
+
+        if (loading_target) {
+            loading_target_elem = $(loading_target);
+        }
 
         if ( request_url ) {
 
@@ -41,9 +48,17 @@ function bind(root_elem) {
                     data: request_params,
                     beforeSend: function () {
                         toggleLoading( $(_this), true );
+
+                        if (loading_target_elem.length) {
+                            loading_target_elem.addClass(loading_class);
+                        }
                     },
                     complete: function () {
                         toggleLoading( $(_this), false );
+
+                        if (loading_target_elem.length) {
+                            loading_target_elem.removeClass(loading_class);
+                        }
                     },
                     success: function (result) {
                         redirectPage(redirect_url);
@@ -52,9 +67,16 @@ function bind(root_elem) {
                         if (xhr.status == 422) {
                             showValidationErrorMsg(xhr);
                         } else {
+                            var response = xhr.responseText;
+
+                            try {
+                                response = JSON.parse(response);
+                            } catch (e) {
+                            }
+
                             Swal.fire({
                                 title: __('Error!'),
-                                text: __('An error occurred while performing the action.'),
+                                text: response.message || __('An error occurred while performing the action.'),
                                 icon: 'error',
                                 scrollbarPadding: false,
                                 heightAuto: false
