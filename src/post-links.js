@@ -50,14 +50,14 @@ function bind(root_elem) {
                         toggleLoading( $(_this), true );
 
                         if (loading_target_elem && loading_target_elem.length) {
-                            loading_target_elem.addClass(loading_class);
+                            loading_target_elem.addClass(loading_class).trigger('loading');
                         }
                     },
                     complete: function () {
                         toggleLoading( $(_this), false );
 
                         if (loading_target_elem && loading_target_elem.length) {
-                            loading_target_elem.removeClass(loading_class);
+                            loading_target_elem.removeClass(loading_class).trigger('loading-complete');
                         }
                     },
                     success: function (result) {
