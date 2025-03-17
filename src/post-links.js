@@ -49,14 +49,14 @@ function bind(root_elem) {
                     beforeSend: function () {
                         toggleLoading( $(_this), true );
 
-                        if (loading_target_elem.length) {
+                        if (loading_target_elem && loading_target_elem.length) {
                             loading_target_elem.addClass(loading_class);
                         }
                     },
                     complete: function () {
                         toggleLoading( $(_this), false );
 
-                        if (loading_target_elem.length) {
+                        if (loading_target_elem && loading_target_elem.length) {
                             loading_target_elem.removeClass(loading_class);
                         }
                     },
