@@ -85,12 +85,20 @@ function bind(root_elem) {
                 if (xhr.status == 422) {
                     showValidationErrorMsg(xhr, inline_errors ? modal : null);
                 } else {
+                    var response = xhr.responseText;
+
+                    try {
+                        response = JSON.parse(response);
+                    } catch (e) {
+                    }
+
                     Swal.fire({
                         title: __('Error!'),
-                        text: __('An error occurred while saving.'),
+                        text: response.message || __('An error occurred while saving.'),
                         icon: 'error',
                         scrollbarPadding: false,
-                        heightAuto: false
+                        heightAuto: false,
+                        confirmButtonText: __('OK'),
                     });
                 }
             }
