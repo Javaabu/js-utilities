@@ -79,7 +79,8 @@ function bind(root_elem) {
                                 text: response.message || __('An error occurred while performing the action.'),
                                 icon: 'error',
                                 scrollbarPadding: false,
-                                heightAuto: false
+                                heightAuto: false,
+                                confirmButtonText: __('OK'),
                             });
                         }
                     }
@@ -162,7 +163,8 @@ function bind(root_elem) {
                             text: __('An error occurred while deleting.'),
                             icon: 'error',
                             scrollbarPadding: false,
-                            heightAuto: false
+                            heightAuto: false,
+                            confirmButtonText: __('OK'),
                         });
                     }
                 });
