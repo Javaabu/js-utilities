@@ -106,7 +106,7 @@ function init() {
             var edit_data = $(this).data('edit-data');
             var modal = $($(this).data('edit-modal'));
             var title = $(this).data('modal-title') || '';
-            var save_text = $(this).data('btn-text') || __('Save');
+            var save_text = $(this).data('btn-text') || '';
 
             // escape html
             title = $('<div />').text(title).html();
@@ -143,6 +143,11 @@ function init() {
                         elem.trigger('change');
                     }
                 }
+
+                var readonly = modal.find('[data-readonly="' + field + '"]');
+                if (readonly.length) {
+                    readonly.text(value)
+                }
             });
 
             modal.find('.invalid-feedback').hide();
@@ -154,7 +159,9 @@ function init() {
                 modal.find('.modal-title').hide();
             }
 
-            modal.find('[data-save-modal]').text(save_text);
+            if (save_text) {
+                modal.find('[data-save-modal]').text(save_text);
+            }
 
             modal.modal('show');
         });
