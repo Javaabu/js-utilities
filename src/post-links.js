@@ -92,7 +92,7 @@ function bind(root_elem) {
             }
 
             // get delete confirmation
-            if ( is_delete ) {
+            if ( is_delete || should_confirm ) {
                 Swal.fire({
                     title:  confirm_title,
                     text: confirm_message,
