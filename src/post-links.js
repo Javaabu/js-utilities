@@ -15,9 +15,13 @@ function bind(root_elem) {
         var params = $(this).data('params') || {};
         var method = $(this).data('method') || 'POST';
         var is_delete = $(this).data('delete') || false;
+        var should_confirm = $(this).data('should-confirm') || false;
         var loading_target = $(this).data('loading-target');
         var loading_class = $(this).data('loading-class') || 'loading';
         var loading_target_elem = null;
+        var confirm_title = $(this).data('confirm-title') || __('Are you sure?');
+        var confirm_message = $(this).data('confirm-message') || __('You will not be able to undo this delete operation!');
+        var confirm_button = $(this).data('confirm-button-text') ||__('Yes, delete it!')
         var _this = this;
 
         if (loading_target) {
@@ -90,11 +94,11 @@ function bind(root_elem) {
             // get delete confirmation
             if ( is_delete ) {
                 Swal.fire({
-                    title: __('Are you sure?'),
-                    text: __('You will not be able to undo this delete operation!'),
+                    title:  confirm_title,
+                    text: confirm_message,
                     icon: 'warning',
                     showCancelButton: true,
-                    confirmButtonText: __('Yes, delete it!'),
+                    confirmButtonText: confirm_button,
                     cancelButtonText: __('Cancel'),
                     scrollbarPadding: false,
                     heightAuto: false,
