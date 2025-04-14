@@ -76,7 +76,7 @@ function bind(root) {
             var form = $(this).closest('form');
             if (! form.length) return; // abort if form
 
-            var upload_url = form.prop('action');
+            var upload_url = form.attr('action');
             var form_method = form.find('input[name="_method"]');
             var upload_method = form.prop('method') || 'POST';
             if (form_method.length) {
@@ -159,7 +159,7 @@ function bind(root) {
             var file_input = remove_btn.siblings('.btn-file').find('input[type=file]');
             var input_name = file_input.prop('name');
 
-            var upload_url = form.prop('action');
+            var upload_url = form.attr('action');
             var form_method = form.find('input[name="_method"]');
             var upload_method = form.prop('method') || 'POST';
             if (form_method.length) {
