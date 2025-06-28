@@ -235,9 +235,11 @@ function showValidationErrorMsg(xhr, form) {
                     }
 
                     form.find('#' + key + '-error').html(lis).show();
+                    form.find('.' + key + '-error').html(lis).show();
 
                     if (second_key) {
                         form.find('#' + second_key + '-error').html(lis).show();
+                        form.find('.' + second_key + '-error').html(lis).show();
                     }
 
                     form.find('[name="' + field + '"]').addClass('is-invalid');
