@@ -196,6 +196,7 @@ function bind(root_elem) {
                 var id_field = child_select.data('id-field') || 'id';
                 var url = child_select.data('select-ajax-url');
                 var filter = child_select.data('filter-field');
+                var filterBys = child_select.data('filter-by') || [];
 
                 url = url.replace(':value', selected_val);
 
@@ -207,6 +208,13 @@ function bind(root_elem) {
                 params['append'] = '';
                 params['filter'] = {};
                 params['filter'][filter] = selected_val;
+
+                if (filterBys.length > 0) {
+                    for (let i = 0; i < filterBys.length; i++) {
+                        let filterValue = $('#' + filterBys[i]).val();
+                        params['filter'][filterBys[i]] = filterValue;
+                    }
+                }
 
                 var child_val = child_select.val() || '';
 
