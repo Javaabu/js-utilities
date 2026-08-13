@@ -61,13 +61,13 @@ function bind(root_elem) {
 
                 if (enable) {
                     // if enable, enable only auto-disabled
-                    _this.find('select.auto-disabled:disabled, input.auto-disabled:disabled, textarea.auto-disabled:disabled').each(function () {
+                    _this.find('select.auto-disabled:disabled, input.auto-disabled:disabled, textarea.auto-disabled:disabled, button.auto-disabled:disabled').each(function () {
                         $(this).prop('disabled', false)
                             .removeClass('auto-disabled');
                     });
                 } else {
                     // if disable, enable only enabled
-                    _this.find('select:enabled, input:enabled, textarea:enabled').each(function () {
+                    _this.find('select:enabled, input:enabled, textarea:enabled, button:enabled').each(function () {
                         $(this).prop('disabled', true)
                             .addClass('auto-disabled');
                     });
