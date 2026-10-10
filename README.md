@@ -4,7 +4,7 @@ JS utilities used for Laravel backends
 
 ## Documentation
 
-You'll find the documentation on [https://docs.javaabu.com/docs/js-utilities](https://docs.javaabu.com/docs/js-utilities).
+You'll find the documentation on [https://docs.javaabu.com/js-utilities](https://docs.javaabu.com/js-utilities).
 
 Find yourself stuck using the package? Found a bug? Do you have general questions or suggestions for improving this package? Feel free to create an [issue](../../issues) on GitHub, we'll try to address it as soon as possible.
 
