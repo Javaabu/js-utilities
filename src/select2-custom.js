@@ -2,6 +2,59 @@
  * Select2 custom
  */
 
+var filter_parent_count = 0;
+
+/**
+ * Get a parent select's value as a string, '' when nothing is selected
+ */
+function filterParentValue(parent_selector) {
+    var value = $(parent_selector).val();
+
+    if (value === null || value === undefined || (Array.isArray(value) && ! value.length)) {
+        return '';
+    }
+
+    return String(value);
+}
+
+/**
+ * Clear the child when the parent's value changes,
+ * and disable it while the parent is empty
+ */
+function bindFilterParent(child, parent_selector) {
+    var parent = $(parent_selector);
+
+    // a namespace per child, so re-binding doesn't stack handlers
+    // and children sharing a parent don't remove each other's handlers
+    var namespace = child.data('filterParentNamespace');
+    if (! namespace) {
+        namespace = 'select2FilterParent' + (++filter_parent_count);
+        child.data('filterParentNamespace', namespace);
+    }
+
+    // remember the value at bind time, so server rendered selections survive page load
+    var last_value = filterParentValue(parent_selector);
+    child.prop('disabled', last_value === '');
+
+    parent.off('change.' + namespace).on('change.' + namespace, function () {
+        var value = filterParentValue(parent_selector);
+        var changed = value !== last_value;
+
+        last_value = value;
+
+        if (changed) {
+            child.val(null).empty();
+        }
+
+        child.prop('disabled', value === '');
+
+        if (changed) {
+            // let any grandchildren cascade
+            child.trigger('change');
+        }
+    });
+}
+
 function bind(root_elem) {
 
     // Iniate Select2 Plugin
@@ -84,22 +137,45 @@ function bind(root_elem) {
         var id_field = element.data('id-field') || 'id';
         var dropdown_parent = element.data('dropdown-parent-elem') || null;
         var urls = element.data('select-ajax-url');
-        var url = '';
 
-        if (typeof urls === 'object') {
-            url = function () {
-                var dynamic_url = urls[element.data('selected-url')];
+        // opt-in: filter the results by the value of a parent select.
+        // read with attr() so jQuery doesn't try to parse selectors like "[name=x]" as JSON
+        var filter_parent = element.attr('data-filter-parent') || null;
+        var filter_field = element.data('filter-field') || null;
+
+        // defaults to 1, so nothing is requested until the user types.
+        // opt-in: set data-minimum-input-length="0" to load the first page as soon as the dropdown opens
+        var minimum_input_length = element.data('minimum-input-length');
+        if (minimum_input_length === undefined) {
+            minimum_input_length = 1;
+        }
+
+        // opt-in: results per request. -1 loads all results at once,
+        // a positive number pages them. when not set, no per_page is sent
+        var per_page = element.data('per-page');
+
+        // resolved on every request, so the parent value is always current
+        var resolveUrl = function () {
+            var dynamic_url = urls;
+
+            if (urls && typeof urls === 'object') {
+                dynamic_url = urls[element.data('selected-url')];
 
                 // fallback to first url
                 if (! dynamic_url) {
                     dynamic_url = Object.keys(urls).length ? urls[Object.keys(urls)[0]] : '';
                 }
+            }
 
-                return dynamic_url;
-            };
-        } else {
-            url = urls;
-        }
+            if (filter_parent && dynamic_url) {
+                dynamic_url = dynamic_url.replace(':value', encodeURIComponent(filterParentValue(filter_parent)));
+            }
+
+            return dynamic_url;
+        };
+
+        // a plain string url, unless the url has to be worked out per request
+        var url = (filter_parent || (urls && typeof urls === 'object')) ? resolveUrl : urls;
 
         var args = {
             ajax: {
@@ -107,15 +183,34 @@ function bind(root_elem) {
                 dataType: 'json',
                 delay: 250,
                 data: function (params) {
-                    return {
-                        filter: {
-                            search: params.term
-                        }, // search term
+                    var query = {
                         append: '',
                         include: '',
                         page: params.page || 1,
                         fields: id_field + ',' + name_field,
                     };
+
+                    if (per_page !== undefined && per_page !== '') {
+                        query.per_page = per_page;
+                    }
+
+                    var filter = {};
+
+                    // skip the search filter when there's no term, which only
+                    // happens when data-minimum-input-length is 0
+                    if (params.term) {
+                        filter.search = params.term;
+                    }
+
+                    if (filter_parent && filter_field) {
+                        filter[filter_field] = $(filter_parent).val();
+                    }
+
+                    if (! $.isEmptyObject(filter)) {
+                        query.filter = filter;
+                    }
+
+                    return query;
                 },
                 processResults: function (data, params) {
                     // parse the results into the format expected by Select2
@@ -124,27 +219,35 @@ function bind(root_elem) {
                     // scrolling can be used
                     params.page = params.page || 1;
 
+                    // per_page -1 returns a plain array instead of a paginated response
+                    var is_paginated = ! Array.isArray(data);
+                    var items = is_paginated ? data.data : data;
+
                     return {
-                        results: $.map(data.data, function (item) {
+                        results: $.map(items, function (item) {
                             return {
                                 text: item[name_field],
                                 id: item[id_field]
                             }
                         }),
                         pagination: {
-                            more: data.next_page_url != null
+                            more: is_paginated && data.next_page_url != null
                         }
                     };
                 },
                 cache: true
             },
-            minimumInputLength: 1,
+            minimumInputLength: minimum_input_length,
             allowClear: true,
             placeholder: $(this).attr('placeholder') || '-- Nothing Selected --'
         };
 
         if (dropdown_parent) {
             args.dropdownParent = $(dropdown_parent);
+        }
+
+        if (filter_parent) {
+            bindFilterParent(element, filter_parent);
         }
 
         element.select2(args);
