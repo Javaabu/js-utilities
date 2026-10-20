@@ -143,15 +143,19 @@ function bind(root_elem) {
         var filter_parent = element.attr('data-filter-parent') || null;
         var filter_field = element.data('filter-field') || null;
 
-        // 0 loads results as soon as the dropdown opens,
-        // set data-minimum-input-length="1" to wait for the user to type
+        // defaults to 1, so nothing is requested until the user types.
+        // opt-in: set data-minimum-input-length="0" to load the first page as soon as the dropdown opens
         var minimum_input_length = element.data('minimum-input-length');
         if (minimum_input_length === undefined) {
-            minimum_input_length = 0;
+            minimum_input_length = 1;
         }
 
+        // opt-in: results per request. -1 loads all results at once,
+        // a positive number pages them. when not set, no per_page is sent
+        var per_page = element.data('per-page');
+
         // resolved on every request, so the parent value is always current
-        var url = function () {
+        var resolveUrl = function () {
             var dynamic_url = urls;
 
             if (urls && typeof urls === 'object') {
@@ -170,6 +174,9 @@ function bind(root_elem) {
             return dynamic_url;
         };
 
+        // a plain string url, unless the url has to be worked out per request
+        var url = (filter_parent || (urls && typeof urls === 'object')) ? resolveUrl : urls;
+
         var args = {
             ajax: {
                 url: url,
@@ -183,10 +190,14 @@ function bind(root_elem) {
                         fields: id_field + ',' + name_field,
                     };
 
+                    if (per_page !== undefined && per_page !== '') {
+                        query.per_page = per_page;
+                    }
+
                     var filter = {};
 
-                    // skip the search filter when there's no term, so the
-                    // dropdown can preload the first page of results
+                    // skip the search filter when there's no term, which only
+                    // happens when data-minimum-input-length is 0
                     if (params.term) {
                         filter.search = params.term;
                     }
@@ -208,15 +219,19 @@ function bind(root_elem) {
                     // scrolling can be used
                     params.page = params.page || 1;
 
+                    // per_page -1 returns a plain array instead of a paginated response
+                    var is_paginated = ! Array.isArray(data);
+                    var items = is_paginated ? data.data : data;
+
                     return {
-                        results: $.map(data.data, function (item) {
+                        results: $.map(items, function (item) {
                             return {
                                 text: item[name_field],
                                 id: item[id_field]
                             }
                         }),
                         pagination: {
-                            more: data.next_page_url != null
+                            more: is_paginated && data.next_page_url != null
                         }
                     };
                 },
